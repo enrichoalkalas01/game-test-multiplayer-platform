@@ -1,0 +1,30 @@
+<%- include('./include/headers', { title: 'Homepages' }) -%>
+
+<body>
+    <script type="text/javascript">
+        let UserData = JSON.parse(GetUserCookies('game-test'))
+        console.log(UserData)
+        var settings = {
+            "url": "/users/logout",
+            "method": "POST",
+            "timeout": 0,
+            "headers": {
+                "Authorization": `${ UserData.token_type } ${ UserData.token }`,
+                "Content-Type": "application/x-www-form-urlencoded"
+            },
+
+            "data": {
+                "uid": UserData.uid
+            }
+        };
+
+        $.ajax(settings).done(function (response) {
+            if ( response ) {
+                DeleteCookies('game-test')
+                window.location.href = '/'
+            }
+        });
+    </script>
+</body>
+
+<%- include('./include/footers') -%>
