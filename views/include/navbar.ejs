@@ -5,6 +5,9 @@
             <li class="nav-item active">
                 <a class="nav-link" href="/">Home</a>
             </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="/online-users">List User Active</a>
+            </li>
             <li class="nav-item" id="login-navbar">
             </li>
         </ul>
@@ -15,7 +18,11 @@
     let UserData = JSON.parse(GetUserCookies('game-test'))
     
     if ( UserData != null || UserData != undefined ) {
-        $('#login-navbar').html(`<a class="nav-link" href="/logout">Logout</a>`)
+        $('#login-navbar').html(`
+            <a class="nav-link" href="/logout">
+                ( ${ UserData.username } ) Logout
+            </a>
+        `)
     } else {
         $('#login-navbar').html(`<a class="nav-link" href="/login">Login</a>`)
     }

@@ -1,0 +1,83 @@
+<%- include('./include/headers', { title: 'Homepages' }) -%>
+
+<body>
+    <%- include('./include/navbar') -%>   
+    
+    <style>
+        #online-users {
+            padding: 5% 10%;
+        }
+
+        #online-users .wrapper-list .card {
+            padding: 2.5%;
+            margin-bottom: 15px;
+            display: flex;
+            flex-direction: row;
+            position: relative;
+        }
+
+        #online-users .wrapper-list .card .wp-b-l {
+            margin-right: 10px;
+            position: relative;
+            margin-left: 5%;
+        }
+
+        #online-users .wrapper-list .card .wp-b-l.user-desc {
+            display: flex;
+            flex-direction: column;
+            margin-left: 10px;
+        }
+
+        .green-button {
+            width: 15px;
+            height: 15px;
+            background-color: green;
+            border-radius: 50%;
+            margin-right: 10px;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+    </style>
+
+    <div id="online-users">
+        <div class="wrapper-list">
+            <div class="card">
+                <div class="green-button wp-b-l"></div>
+                <div class="wp-b-l">1.</div>
+                <div class="wp-b-l user-desc">
+                    <span>Username</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script type="text/javascript">
+        let settings = {
+            "url": "/users/online",
+            "method": "GET",
+            "timeout": 0,
+        };
+
+        $.ajax(settings).done(function (response) {
+            console.log(response)
+            $('#online-users .wrapper-list').html('')
+            for ( let i = 0; i < response.length; i++ ) {
+                $('#online-users .wrapper-list').append(`
+                    <div class="card">
+                        <span class="green-button"></span>
+                        <div class="wp-b-l">${ i + 1 }</div>
+                        <div class="wp-b-l user-desc">
+                            <span>id : ${ response[i].userdata.uid }</span>
+                            <span>Username : ${ response[i].userdata.username }</span>
+                            <span>Age : ${ response[i].userdata.age }</span>
+                            <span>Fullname : ${ response[i].userdata.fullname }</span>
+                        </div>
+                    </div>
+                `)
+            }
+        });
+    </script>
+</body>
+
+<%- include('./include/footers') -%>

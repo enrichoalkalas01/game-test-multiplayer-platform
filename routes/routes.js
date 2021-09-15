@@ -15,5 +15,6 @@ Routes.get('/users/online', UserControllers.OnlineStatus)
 Routes.get('/', (req, res) => { res.render('index') })
 Routes.get('/login', (req, res) => { res.render('login') })
 Routes.get('/logout', (req, res) => { res.render('logout') })
+Routes.get('/online-users', (req, res) => { res.render('online_users') })
 
 module.exports = Routes

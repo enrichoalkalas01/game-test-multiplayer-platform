@@ -124,7 +124,8 @@ const OnlineStatus = (req, res) => {
         'userdata.username',
         'userdata.fullname',
         'userdata.age',
-        'userdata.address'
+        'userdata.address',
+        'userdata.uid'
     ]).then(response => {
         res.send(response)
     }).catch(err => {
