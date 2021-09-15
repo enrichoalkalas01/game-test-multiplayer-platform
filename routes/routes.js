@@ -18,3 +18,7 @@ Routes.get('/logout', (req, res) => { res.render('logout') })
 Routes.get('/online-users', (req, res) => { res.render('online_users') })
 
 module.exports = Routes
+
+// Tester List User
+// Username : enrichoalkalas
+// Password : admin123
